@@ -1,6 +1,6 @@
 # Adoption: making an existing project docs-driven
 
-Implementation of [practice.md](practice.md) — elaboration is this document's freedom; where it overlaps the [idea](https://github.com/Reblexis/docs-driven-development/blob/master/docs/idea.md), the idea is the source and wins. An existing project is an implementation whose docs don't exist yet. Adoption gives it docs and inverts the authority: from the moment the docs exist, they are the source of truth and the code has no special status — not even the parts that work.
+Implementation of [docs/practice.md](../docs/practice.md) — elaboration is this document's freedom; where it overlaps the [idea](https://github.com/Reblexis/docs-driven-development/blob/master/docs/idea.md), the idea is the source and wins. An existing project is an implementation whose docs don't exist yet. Adoption gives it docs and inverts the authority: from the moment the docs exist, they are the source of truth and the code has no special status — not even the parts that work.
 
 Adoption is three moves. They can be done in an afternoon; the third one starts a loop that never ends.
 

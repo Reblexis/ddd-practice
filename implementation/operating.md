@@ -1,6 +1,6 @@
 # Operating: developing with agents in a docs-driven project
 
-Implementation of [practice.md](practice.md) — elaboration is this document's freedom; where it overlaps the [idea](https://github.com/Reblexis/docs-driven-development/blob/master/docs/idea.md), the idea is the source and wins. This is the day-to-day discipline once a project is adopted: the human programs in docs, agents make reality match them.
+Implementation of [docs/practice.md](../docs/practice.md) — elaboration is this document's freedom; where it overlaps the [idea](https://github.com/Reblexis/docs-driven-development/blob/master/docs/idea.md), the idea is the source and wins. This is the day-to-day discipline once a project is adopted: the human programs in docs, agents make reality match them.
 
 ## The change flow
 
