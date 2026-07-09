@@ -1,6 +1,6 @@
 # Adoption: making an existing project docs-driven
 
-Governed by the [README](../README.md). An existing project is an implementation whose docs don't exist yet. Adoption gives it docs and inverts the authority: from the moment the docs exist, they are the source of truth and the code has no special status — not even the parts that work.
+Governed by [practice.md](practice.md). An existing project is an implementation whose docs don't exist yet. Adoption gives it docs and inverts the authority: from the moment the docs exist, they are the source of truth and the code has no special status — not even the parts that work.
 
 Adoption is three moves. They can be done in an afternoon; the third one starts a loop that never ends.
 

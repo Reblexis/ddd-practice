@@ -1,6 +1,6 @@
 # Operating: developing with agents in a docs-driven project
 
-Governed by the [README](../README.md). This is the day-to-day discipline once a project is adopted: the human programs in docs, agents make reality match them.
+Governed by [practice.md](practice.md). This is the day-to-day discipline once a project is adopted: the human programs in docs, agents make reality match them.
 
 ## The change flow
 
