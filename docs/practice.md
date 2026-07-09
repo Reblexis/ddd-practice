@@ -2,19 +2,9 @@
 
 A specific way to practice [docs-driven development](https://github.com/Reblexis/docs-driven-development): how to adopt it in an existing project, and how to use and develop with it when AI agents write the code.
 
-The core idea deliberately specifies nothing beyond itself — no doc structure, no conformance process, no migration path. This repo is one derived design that fills those in. It is opinionated where the core is silent; where it disagrees with the core, this repo is wrong. Your project may derive a different practice; its own docs win over this one.
+This document is the source of truth for this repository, and it is deliberately minimal: it contains only what was explicitly specified, and wherever the [idea](https://github.com/Reblexis/docs-driven-development/blob/master/docs/idea.md) already says something, this repo references it instead of restating it. Where anything here disagrees with the idea, this repo is wrong. Your project may derive a different practice; its own docs win over this one.
 
-## This repo follows its own standard
-
-This document is the source of truth for this repository. Everything below it in the hierarchy is derived from it and is wrong wherever it disagrees with it. Changes to this practice happen here first, then flow downward.
-
-The repo's docs live in `./docs`; this document governs the two lower-layer documents beside it:
-
-- [`adoption.md`](adoption.md) must describe how an existing project becomes docs-driven, in three moves: **declare** (state in the governing docs — which live in `./docs`, per the idea — that docs govern; the root README becomes a derived summary), **bootstrap** (build the doc hierarchy under `./docs` out of existing docs, existing code, and the owner's intent — reusing, never duplicating), and **reconcile** (run the first conformance audit and fix what it finds). It must treat existing code as an implementation whose docs don't exist yet, with no special status once they do.
-
-- [`operating.md`](operating.md) must describe day-to-day development with agents once adopted: every behavior change starts as a doc edit; agents conform code to docs and never the reverse; conformance is verified by a party other than the code's author; each divergence found is classified as a code bug (doc right, code wrong — fix the code), a doc bug (code sensible, doc stale — fix the doc), an ambiguity (two plausible readings — tighten the one sentence that caused it), or unspecified behavior (write it into the docs if others depend on it, leave it as freedom if not). It must describe how docs layer — broad intent at the top, precision concentrated at the boundaries other components and agents depend on — and how rules learned from bugs get promoted into the docs so they survive rewrites. It must state that the human is spoken to in terms of docs and observable behavior, never code, and that decisions brought to the human are framed as proposed doc edits.
-
-Anything the lower documents say beyond this specification is their freedom, provided it contradicts neither this document nor the core idea.
+The rest of the repo — [`adoption.md`](adoption.md) (adopting in an existing project) and [`operating.md`](operating.md) (using and developing with agents) — is the implementation of this practice. As implementation it may elaborate, and duplication is fine there; it is wrong wherever it contradicts this document or the idea.
 
 ## License
 
