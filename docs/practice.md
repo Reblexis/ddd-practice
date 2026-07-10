@@ -10,4 +10,6 @@ The repo ships an installable skill for AI agents, at `skill/`: it describes how
 
 The docs must be as easy for a human to understand as possible while staying complete: HTML document(s) generated inside the repo render them visually, so the human reads the HTML, not `./docs`. The HTML reflects `./docs` exactly — nothing hallucinated on top, nothing missing. The docs themselves may be whatever format best represents the information: markdown is the base, but HTML, images (e.g. `.png`), or even video belong in `./docs` when they represent it better. The human-readable rendering lives outside `./docs`, properly organized.
 
-Every repo using this practice states at the bottom of its README that it uses this practice (linked), describes how its `./docs` is structured, and says where the human-readable representation lives.
+Every repo using this practice states at the bottom of its README that it uses this practice (linked), describes how its `./docs` is structured, and says where the human-readable representation lives. Beyond that footer the README does not mention the practice: to a newcomer the repo looks like any repo with docs, and that it is docs-driven shows only on deeper inspection — unless the repo's own docs specify otherwise.
+
+When adopting this practice in a repo, its `./docs` must describe how to develop and contribute there: anyone developing or contributing follows this practice (linked) — docs first, everything else conforms.
