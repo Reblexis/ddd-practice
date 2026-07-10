@@ -29,7 +29,11 @@ the authoritative elaboration:
   divergence is classified (code bug / doc bug / ambiguity /
   unspecified) and fixed on its own side; learned rules get promoted
   into the docs; the human is spoken to in docs and observable
-  behavior, with decisions framed as proposed doc edits.
+  behavior, with decisions framed as proposed doc edits. The repo
+  keeps a human-readable HTML mirror of `./docs` (exact — nothing
+  added, nothing missing), outside `./docs`, updated in the same
+  commit as any doc change; the README ends with a footer naming the
+  practice (linked), the `./docs` structure, and the mirror location.
 
 When executing, follow those two documents; where they and any project's
 own docs differ, the project's docs win. Where anything here contradicts
