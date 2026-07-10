@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DDD Practice — docs-driven development, browsable</title>
+<style>
+  :root {
+    --bg: #faf9f6; --surface: #ffffff; --ink: #1c1b18; --muted: #6b675e;
+    --line: #e4e1d8; --accent: #0d6e5f; --accent-soft: #e3f0ed;
+    --pin: #8a4b0f; --pin-soft: #f6ead9; --free: #3b5f8a; --free-soft: #e6edf5;
+    --code: #f0eee7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16161a; --surface: #1f1f25; --ink: #e8e6df; --muted: #a09b8f;
+      --line: #33323b; --accent: #4fc3ab; --accent-soft: #1c332e;
+      --pin: #e0a865; --pin-soft: #332818; --free: #86aede; --free-soft: #1c2635;
+      --code: #26262d;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f6; --surface: #ffffff; --ink: #1c1b18; --muted: #6b675e;
+    --line: #e4e1d8; --accent: #0d6e5f; --accent-soft: #e3f0ed;
+    --pin: #8a4b0f; --pin-soft: #f6ead9; --free: #3b5f8a; --free-soft: #e6edf5;
+    --code: #f0eee7;
+  }
+  :root[data-theme="dark"] {
+    --bg: #16161a; --surface: #1f1f25; --ink: #e8e6df; --muted: #a09b8f;
+    --line: #33323b; --accent: #4fc3ab; --accent-soft: #1c332e;
+    --pin: #e0a865; --pin-soft: #332818; --free: #86aede; --free-soft: #1c2635;
+    --code: #26262d;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font: 16px/1.65 Georgia, 'Times New Roman', serif;
+    padding: 0 1.25rem 6rem;
+  }
+  main { max-width: 46rem; margin: 0 auto; }
+  h1, h2, h3, .k { font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: -0.01em; }
+  h1 { font-size: 2.1rem; line-height: 1.15; margin: 3.5rem 0 0.5rem; }
+  h2 { font-size: 1.35rem; margin: 3rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+  h3 { font-size: 1rem; margin: 1.5rem 0 0.5rem; }
+  p { margin: 0.75rem 0; }
+  a { color: var(--accent); }
+  .lede { font-size: 1.15rem; color: var(--muted); margin-top: 0.75rem; }
+  .crumb { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.8rem; color: var(--muted); margin-top: 2.5rem; }
+  .crumb b { color: var(--accent); font-weight: 600; }
+  code { background: var(--code); padding: 0.1em 0.35em; border-radius: 4px; font-size: 0.88em; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+    padding: 1rem 1.25rem; margin: 1rem 0;
+  }
+  .k {
+    display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; padding: 0.15em 0.6em; border-radius: 99px; margin-bottom: 0.5rem;
+  }
+  .k-pin { background: var(--pin-soft); color: var(--pin); }
+  .k-free { background: var(--free-soft); color: var(--free); }
+  .k-acc { background: var(--accent-soft); color: var(--accent); }
+  /* the dial */
+  .dial { display: flex; gap: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin: 1.25rem 0; font-family: 'Helvetica Neue', Arial, sans-serif; }
+  .dial > div { flex: 1; padding: 0.85rem 1rem; font-size: 0.86rem; line-height: 1.45; }
+  .dial .d1 { background: var(--pin-soft); }
+  .dial .d2 { background: var(--surface); }
+  .dial .d3 { background: var(--free-soft); }
+  .dial b { display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+  /* steps */
+  .steps { counter-reset: step; display: grid; gap: 0.75rem; margin: 1.25rem 0; }
+  .step { position: relative; padding: 1rem 1.25rem 1rem 3.4rem; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+  .step::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; left: 1rem; top: 1.05rem;
+    width: 1.6rem; height: 1.6rem; border-radius: 50%;
+    background: var(--accent); color: var(--bg);
+    font: 700 0.9rem/1.6rem 'Helvetica Neue', Arial, sans-serif; text-align: center;
+  }
+  .step b.t { font-family: 'Helvetica Neue', Arial, sans-serif; }
+  /* 2x2 classification */
+  .quad { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.25rem 0; }
+  @media (max-width: 40rem) { .quad { grid-template-columns: 1fr; } }
+  .quad .card { margin: 0; }
+  .quad .fix { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.82rem; font-weight: 600; margin-top: 0.5rem; }
+  /* layers */
+  .layers { margin: 1.25rem auto; max-width: 34rem; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.88rem; text-align: center; }
+  .layers > div { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 0.6rem 1rem; margin: 0.35rem auto; }
+  .layers .l1 { width: 55%; background: var(--pin-soft); }
+  .layers .l2 { width: 75%; background: var(--accent-soft); }
+  .layers .l3 { width: 95%; }
+  .layers small { color: var(--muted); display: block; }
+  .flow-note { text-align: center; color: var(--muted); font-size: 0.8rem; font-family: 'Helvetica Neue', Arial, sans-serif; }
+  ul { padding-left: 1.2rem; } li { margin: 0.4rem 0; }
+  .foot { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<main>
+  <p class="crumb">derived artifact · rendered from <b>docs/practice.md</b> + <b>implementation/</b> + the <b>idea</b> — wrong wherever it disagrees with them</p>
+  <h1>Docs-Driven Development, <em>practiced</em></h1>
+  <p class="lede">Software whose source is documentation. Humans write docs at the abstraction they choose; AI agents make reality match them. This page renders <a href="https://github.com/Reblexis/ddd-practice">ddd-practice</a> — one specific way to adopt and operate the <a href="https://github.com/Reblexis/docs-driven-development">idea</a> — for fast human reading.</p>
+
+  <h2>The idea in one picture</h2>
+  <p>A programming language forces you to decide everything, including the thousands of things you have no opinion about. Docs as source invert that: <b>write precisely where behavior matters, stay abstract where it doesn't.</b> Natural language becomes a programming language with an adjustable determinism dial:</p>
+  <div class="dial">
+    <div class="d1"><b>Pinned</b>"An agent at zero balance never thinks." One reading. Behavior fixed.</div>
+    <div class="d2"><b>Constrained</b>"Respond within a minute under normal load." A family of correct implementations.</div>
+    <div class="d3"><b>Open</b>"The fleet should feel alive." Direction. Implementers decide the rest.</div>
+  </div>
+  <div class="card"><span class="k k-acc">The rules (from the idea)</span>
+    <ul>
+      <li><b>Minimal docs.</b> Only what was explicitly specified. Everything unwritten is delegated, not forgotten. Reference the original instead of duplicating; only implementation may duplicate.</li>
+      <li><b><code>./docs</code> holds the docs</b>, clearly separated from everything derived. The README is itself derived: a faithful summary of what the repo is and contains, linking into <code>./docs</code> — it specifies nothing new and misdescribes nothing.</li>
+      <li><b>Docs are the source of truth.</b> Code exists to satisfy them; where they disagree, the code is wrong.</li>
+      <li><b>To change the software, change the docs.</b> Code is then made to conform.</li>
+      <li><b>Ambiguity below the written precision is freedom</b>, not error.</li>
+      <li><b>Divergence that matters means the docs were too loose exactly there</b> — the fix is precision exactly there.</li>
+    </ul>
+  </div>
+
+  <h2>Adopting an existing project</h2>
+  <p>An existing project is an implementation whose docs don't exist yet. Three moves; an afternoon of work; the third starts a loop that never ends.</p>
+  <div class="steps">
+    <div class="step"><b class="t">Declare.</b> State in the governing docs (they live in <code>./docs</code>; create the root document if nothing qualifies) that docs govern: docs are truth, code is derived, behavior changes start as doc changes. Link the idea so the words have a definition. The README becomes a derived summary. <em>The declaration changes what every later divergence means — before it, a disagreeing doc is stale; after it, the code is buggy.</em></div>
+    <div class="step"><b class="t">Bootstrap.</b> Build the hierarchy from three sources: existing docs, the code as it behaves, and the owner's intent — the one input only the owner can give. Promote existing fragments instead of duplicating them. A pre-existing <code>./docs</code> is raw material, not a fait accompli: rework what genuinely governs into the hierarchy; move everything descriptive (research, notes, generated output) elsewhere in the repo, described abstractly in the docs if it matters. Owners write intent; agents draft everything else — an owner's pass turns description into specification.</div>
+    <div class="step"><b class="t">Reconcile.</b> Run the first conformance audit immediately, not eventually. It will find things: undocumented behavior others depend on, documented behavior never built, invariants quietly dropped. Every finding makes the docs truer or the code correct — both are adoption working.</div>
+  </div>
+
+  <h2>Operating: every change starts in the docs</h2>
+  <div class="steps">
+    <div class="step"><b class="t">Find the governing sentence</b> that owns the behavior you want to change.</div>
+    <div class="step"><b class="t">Change the doc first.</b> Silent docs + internal change = your freedom, just build. Silent docs + a boundary others depend on = write the missing sentence first.</div>
+    <div class="step"><b class="t">Conform the code</b> — same commit as the doc change at the latest, never after. Evolve or rewrite is purely a cost question.</div>
+  </div>
+  <p><b>Code-only behavior changes are violations, even good ones.</b> A fix worth keeping is worth a doc sentence.</p>
+
+  <h2>The conformance loop</h2>
+  <p>Periodically, a party <em>other than the code's author</em> reads the docs fully, lists every checkable claim, and audits the implementation. Self-graded conformance is how "docs-driven" degrades into "docs-adjacent". Each divergence is classified — and the class decides which side gets fixed:</p>
+  <div class="quad">
+    <div class="card"><span class="k k-pin">Code bug</span><br>The doc is right; the code fails it.<div class="fix">→ fix the code</div></div>
+    <div class="card"><span class="k k-acc">Doc bug</span><br>The code is sensible; the doc is stale or wrong.<div class="fix">→ fix the doc</div></div>
+    <div class="card"><span class="k k-free">Ambiguity</span><br>Two plausible readings; the code picked one.<div class="fix">→ tighten the one sentence — nothing more</div></div>
+    <div class="card"><span class="k k-free">Unspecified</span><br>Significant behavior the docs never mention.<div class="fix">→ others depend on it: write it in (or the owner removes it) · internal: leave it, that's freedom</div></div>
+  </div>
+  <p>The auditor also reports what <em>verified as conforming</em>, so trust in the docs is earned, not assumed.</p>
+
+  <h2>Layers: precision lives at boundaries</h2>
+  <div class="layers">
+    <div class="l1"><b>Intent</b><small>why this exists — short, stable, mostly open</small></div>
+    <div class="l2"><b>Contracts</b><small>interfaces, protocols, invariants others depend on — the precision lives here</small></div>
+    <div class="l3"><b>Component detail</b><small>only where detail matters; many components need nothing beyond their contracts</small></div>
+  </div>
+  <p class="flow-note">conflicts resolve upward: the higher layer wins, the lower doc gets fixed</p>
+  <p>Ambiguity inside one component is free — nobody else depends on those choices. Ambiguity at an interface is where two correct implementations collide. When integration breaks, the failure names the sentence that was too loose; tighten that sentence and nothing else.</p>
+
+  <h2>Promotion: how the docs learn</h2>
+  <p>When a bug fix or incident encodes a real behavioral rule, promote the rule into the docs at its layer. <b>Code remembers nothing across a rewrite; docs remember everything.</b> A rule living only in code is one regeneration away from being lost. Each divergence event ends with a corrected artifact or a tightened sentence — and the tightened sentence prevents the class, not just the instance.</p>
+
+  <h2>Talking to the human</h2>
+  <p>The human reads docs, not code. Report in docs and observable behavior: which claims held, which were violated and how it showed, what changed in which document. Decisions that change intent arrive as <b>proposed doc edits</b> — here is the sentence, here is what it would become, here is why. The human's answer is an edit, and the edit is the decision. Everything below the abstraction the human chose is not their problem; that is the point.</p>
+
+  <div class="foot">
+    <p>Normative sources: <a href="https://github.com/Reblexis/docs-driven-development/blob/master/docs/idea.md">the idea</a> · <a href="docs/practice.md">docs/practice.md</a> · <a href="implementation/adoption.md">implementation/adoption.md</a> · <a href="implementation/operating.md">implementation/operating.md</a>. Agents install the <a href="skill/SKILL.md">skill</a> by copying <code>skill/</code> into their skills directory. This page is derived; the docs win.</p>
+  </div>
+</main>
+</body>
+</html>
