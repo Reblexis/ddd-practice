@@ -6,7 +6,9 @@ Adoption is three moves. They can be done in an afternoon; the third one starts 
 
 ## 1. Declare
 
-State, in the project's governing docs — which live in `./docs` per the idea; create the root document there if nothing qualifies — that the project is docs-driven: the docs are the source of truth, all code is a derived artifact that exists to satisfy them, code is wrong wherever they disagree, and behavior changes start as doc changes. Link the [core idea](https://github.com/Reblexis/docs-driven-development) so the words have a definition. The root README becomes a derived summary of what the repo is and contains, strictly per the docs, linking into `./docs` — it holds nothing normative.
+State, in the project's governing docs — which live in `./docs` per the idea; create the root document there if nothing qualifies — that the project is docs-driven: the docs are the source of truth, all code is a derived artifact that exists to satisfy them, code is wrong wherever they disagree, and behavior changes start as doc changes. Link the [core idea](https://github.com/Reblexis/docs-driven-development) so the words have a definition. The declaration doubles as the contributing guide: `./docs` states that anyone developing or contributing here follows [ddd-practice](https://github.com/Reblexis/ddd-practice) — docs first, everything else conforms.
+
+The root README becomes a derived summary of what the repo is and contains, strictly per the docs, linking into `./docs` — it holds nothing normative. Its only mention of the practice is the footer (the practice link, the `./docs` structure, the human-readable representation's location); beyond that the repo reads like any repo with docs, and being docs-driven shows only on deeper inspection, unless the repo's own docs specify otherwise.
 
 The declaration matters because it changes what every later divergence *means*. Before it, a doc that disagrees with code is a stale doc. After it, it is a bug in the code.
 
