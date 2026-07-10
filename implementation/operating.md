@@ -31,6 +31,10 @@ Docs form a hierarchy: broad intent at the top, contracts in the middle, compone
 
 Precision concentrates at boundaries. Ambiguity inside one component is free, because nobody else depends on those choices. Ambiguity at an interface — a protocol, a payment rule, a message format — is where two correct implementations collide. When agents diverge or integrations break, the failure names the sentence that was too loose; tighten that sentence and nothing else.
 
+## The human-readable mirror
+
+Humans read the HTML rendering, not `./docs` — so the mirror is maintained like code: any commit that changes a doc updates the rendering in the same commit, and the conformance loop checks mirror-vs-docs exactness the same way it checks code-vs-docs (a stale or embellished mirror is a divergence; the docs win). Keep the rendering outside `./docs`, organized as the repo's browsing entry (e.g. `index.html` at the root, or a `browse/` folder for multi-page renderings).
+
 ## Promotion: how the docs learn
 
 When a bug fix, an incident, or a discovered edge case encodes a real behavioral rule, promote the rule into the docs at the layer where it belongs. Code remembers nothing across a rewrite; docs remember everything. A rule that lives only in code is one regeneration away from being lost.

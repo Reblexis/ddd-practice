@@ -100,6 +100,17 @@
   <h1>Docs-Driven Development, <em>practiced</em></h1>
   <p class="lede">Software whose source is documentation. Humans write docs at the abstraction they choose; AI agents make reality match them. This page renders <a href="https://github.com/Reblexis/ddd-practice">ddd-practice</a> — one specific way to adopt and operate the <a href="https://github.com/Reblexis/docs-driven-development">idea</a> — for fast human reading.</p>
 
+  <h2>The governing doc, exactly (<code>docs/practice.md</code>)</h2>
+  <div class="card">
+    <p>This repo describes a specific way to practice <a href="https://github.com/Reblexis/docs-driven-development/blob/master/docs/idea.md">docs-driven development</a>: how to adopt it in an existing project, and how to use and develop with it when AI agents write the code.</p>
+    <p>Everything else in the repo is the implementation of that description. The idea's rules apply here by reference; where the implementation contradicts this document or the idea, the implementation is wrong.</p>
+    <p>When adopting in a project that already has a <code>./docs</code>, the existing docs are not kept as they were: they are reworked into the standard structure, and content that does not belong in the docs moves elsewhere in the repo — described abstractly in the docs where needed.</p>
+    <p>The repo ships an installable skill for AI agents, at <code>skill/</code>: it describes how to practice this — adopting and operating per this repo — consistently with this document, and installs by copying the folder into an agent's skills directory. Everything else about the skill is its implementation.</p>
+    <p>The docs must be as easy for a human to understand as possible while staying complete: HTML document(s) generated inside the repo render them visually, so the human reads the HTML, not <code>./docs</code>. The HTML reflects <code>./docs</code> exactly — nothing hallucinated on top, nothing missing. The docs themselves may be whatever format best represents the information: markdown is the base, but HTML, images (e.g. <code>.png</code>), or even video belong in <code>./docs</code> when they represent it better. The human-readable rendering lives outside <code>./docs</code>, properly organized.</p>
+    <p>Every repo using this practice states at the bottom of its README that it uses this practice (linked), describes how its <code>./docs</code> is structured, and says where the human-readable representation lives.</p>
+  </div>
+  <p class="flow-note">everything below renders the implementation (<code>implementation/adoption.md</code>, <code>implementation/operating.md</code>) and the idea — labeled elaboration, not additional specification</p>
+
   <h2>The idea in one picture</h2>
   <p>A programming language forces you to decide everything, including the thousands of things you have no opinion about. Docs as source invert that: <b>write precisely where behavior matters, stay abstract where it doesn't.</b> Natural language becomes a programming language with an adjustable determinism dial:</p>
   <div class="dial">
@@ -152,6 +163,9 @@
   </div>
   <p class="flow-note">conflicts resolve upward: the higher layer wins, the lower doc gets fixed</p>
   <p>Ambiguity inside one component is free — nobody else depends on those choices. Ambiguity at an interface is where two correct implementations collide. When integration breaks, the failure names the sentence that was too loose; tighten that sentence and nothing else.</p>
+
+  <h2>The human-readable mirror</h2>
+  <p>Humans read the HTML rendering, not <code>./docs</code> — so the mirror is maintained like code: a commit that changes a doc updates the rendering in the same commit, and the conformance loop checks mirror-vs-docs exactness the same way it checks code-vs-docs. A stale or embellished mirror is a divergence; the docs win. The rendering lives outside <code>./docs</code>, organized as the repo's browsing entry (this page is exactly that).</p>
 
   <h2>Promotion: how the docs learn</h2>
   <p>When a bug fix or incident encodes a real behavioral rule, promote the rule into the docs at its layer. <b>Code remembers nothing across a rewrite; docs remember everything.</b> A rule living only in code is one regeneration away from being lost. Each divergence event ends with a corrected artifact or a tightened sentence — and the tightened sentence prevents the class, not just the instance.</p>

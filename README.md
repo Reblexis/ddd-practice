@@ -10,3 +10,7 @@ A specific way to practice [docs-driven development](https://github.com/Reblexis
 ## License
 
 [MIT](LICENSE)
+
+---
+
+This repo uses [ddd-practice](https://github.com/Reblexis/ddd-practice) (itself): docs are the source of truth, everything else is derived. `./docs` holds one governing document, [`practice.md`](docs/practice.md). The human-readable representation is [`index.html`](index.html) at the repo root, also served at [reblexis.github.io/ddd-practice](https://reblexis.github.io/ddd-practice/).
