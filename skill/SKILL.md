@@ -36,7 +36,13 @@ the authoritative elaboration:
   practice (linked), the `./docs` structure, and the mirror location —
   and mentions the practice nowhere else (the repo reads like any repo
   with docs). `./docs` states that anyone developing or contributing
-  follows the practice: docs first, everything else conforms.
+  follows the practice: docs first, everything else conforms. A repo
+  created by copying a practicing repo (a fork, a template) inherits
+  derived artifacts that describe the source and are wrong from the
+  moment the copy exists: regenerate the README and mirror against the
+  new repo's own `./docs` at creation, and update any doc that governs
+  the new repo's existence elsewhere (a parent's member list, a
+  registry) in the same stroke.
 
 When executing, follow those two documents; where they and any project's
 own docs differ, the project's docs win. Where anything here contradicts

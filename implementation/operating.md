@@ -35,6 +35,10 @@ Precision concentrates at boundaries. Ambiguity inside one component is free, be
 
 Humans read the HTML rendering, not `./docs` — so the mirror is maintained like code: any commit that changes a doc updates the rendering in the same commit, and the conformance loop checks mirror-vs-docs exactness the same way it checks code-vs-docs (a stale or embellished mirror is a divergence; the docs win). Exact content, free presentation: spend the freedom on speed — anchored navigation, visual hierarchy, emphasis on the load-bearing phrases, search or collapsing where the docs are large — so the reader reaches what they came for in seconds. Keep the rendering outside `./docs`, organized as the repo's browsing entry (e.g. `index.html` at the root, or a `browse/` folder for multi-page renderings).
 
+## Copies and forks
+
+A repo created by copying a practicing repo starts with the source's derived artifacts, and they lie: the README summarizes the source, the mirror renders the source's docs, and both look perfectly healthy. Treat creating the copy as a doc change that touched everything derived. Before the new repo is used or announced, regenerate its README and mirror against its own `./docs`, and update any doc that governs the new repo's existence elsewhere (a parent repo's member list, a registry, an index) in the same stroke as the copy's creation. The first conformance audit of a fresh copy checks exactly this: derived artifacts against the new docs, membership docs against the new reality. Where copies are routine (a fork-based fleet, a template), make regeneration mechanical (a script that rebuilds the derived artifacts from `./docs`) so the rule costs nothing to follow; hand-maintained derived artifacts are exactly where this failure breeds.
+
 ## Promotion: how the docs learn
 
 When a bug fix, an incident, or a discovered edge case encodes a real behavioral rule, promote the rule into the docs at the layer where it belongs. Code remembers nothing across a rewrite; docs remember everything. A rule that lives only in code is one regeneration away from being lost.
