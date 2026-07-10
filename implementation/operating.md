@@ -33,7 +33,7 @@ Precision concentrates at boundaries. Ambiguity inside one component is free, be
 
 ## The human-readable mirror
 
-Humans read the HTML rendering, not `./docs` — so the mirror is maintained like code: any commit that changes a doc updates the rendering in the same commit, and the conformance loop checks mirror-vs-docs exactness the same way it checks code-vs-docs (a stale or embellished mirror is a divergence; the docs win). Keep the rendering outside `./docs`, organized as the repo's browsing entry (e.g. `index.html` at the root, or a `browse/` folder for multi-page renderings).
+Humans read the HTML rendering, not `./docs` — so the mirror is maintained like code: any commit that changes a doc updates the rendering in the same commit, and the conformance loop checks mirror-vs-docs exactness the same way it checks code-vs-docs (a stale or embellished mirror is a divergence; the docs win). Exact content, free presentation: spend the freedom on speed — anchored navigation, visual hierarchy, emphasis on the load-bearing phrases, search or collapsing where the docs are large — so the reader reaches what they came for in seconds. Keep the rendering outside `./docs`, organized as the repo's browsing entry (e.g. `index.html` at the root, or a `browse/` folder for multi-page renderings).
 
 ## Promotion: how the docs learn
 

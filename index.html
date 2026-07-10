@@ -7,49 +7,111 @@
 <style>
   :root {
     --bg: #faf9f6; --surface: #ffffff; --ink: #1c1b18; --muted: #6b675e;
-    --line: #e4e1d8; --accent: #0d6e5f; --code: #f0eee7;
+    --line: #e4e1d8; --accent: #0d6e5f; --accent-soft: #e3f0ed; --code: #f0eee7;
+    --mark: #f3ecc9;
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #16161a; --surface: #1f1f25; --ink: #e8e6df; --muted: #a09b8f;
-      --line: #33323b; --accent: #4fc3ab; --code: #26262d;
+      --line: #33323b; --accent: #4fc3ab; --accent-soft: #1c332e; --code: #26262d;
+      --mark: #3a3623;
     }
   }
   :root[data-theme="light"] {
     --bg: #faf9f6; --surface: #ffffff; --ink: #1c1b18; --muted: #6b675e;
-    --line: #e4e1d8; --accent: #0d6e5f; --code: #f0eee7;
+    --line: #e4e1d8; --accent: #0d6e5f; --accent-soft: #e3f0ed; --code: #f0eee7;
+    --mark: #f3ecc9;
   }
   :root[data-theme="dark"] {
     --bg: #16161a; --surface: #1f1f25; --ink: #e8e6df; --muted: #a09b8f;
-    --line: #33323b; --accent: #4fc3ab; --code: #26262d;
+    --line: #33323b; --accent: #4fc3ab; --accent-soft: #1c332e; --code: #26262d;
+    --mark: #3a3623;
   }
   * { box-sizing: border-box; margin: 0; }
-  body { background: var(--bg); color: var(--ink); font: 17px/1.7 Georgia, 'Times New Roman', serif; padding: 0 1.25rem 6rem; }
-  main { max-width: 44rem; margin: 0 auto; }
-  h1 { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 2rem; margin: 3rem 0 1.5rem; }
-  p { margin: 1.1rem 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.65 Georgia, 'Times New Roman', serif; padding: 0 1.25rem 6rem; }
+  main { max-width: 46rem; margin: 0 auto; }
+  h1 { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 1.9rem; margin: 1.5rem 0 0.25rem; }
   a { color: var(--accent); }
   code { background: var(--code); padding: 0.1em 0.35em; border-radius: 4px; font-size: 0.88em; }
-  .crumb { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.8rem; color: var(--muted); margin-top: 2.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
-  .doc { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.5rem 2rem; margin-top: 1.5rem; }
-  .src { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+  mark { background: var(--mark); color: inherit; padding: 0 0.15em; border-radius: 3px; }
+  .crumb { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.78rem; color: var(--muted); margin-top: 2rem; }
+  .src { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.78rem; color: var(--muted); }
+  nav {
+    position: sticky; top: 0; z-index: 5; background: var(--bg);
+    display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0.75rem 0 0.6rem;
+    border-bottom: 1px solid var(--line); margin: 0.75rem 0 1rem;
+    font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.78rem;
+  }
+  nav a {
+    text-decoration: none; color: var(--accent); background: var(--accent-soft);
+    padding: 0.25em 0.7em; border-radius: 99px; font-weight: 600;
+  }
+  section {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+    padding: 1rem 1.4rem; margin: 0.8rem 0; scroll-margin-top: 4.5rem;
+  }
+  section h2 {
+    font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.75rem;
+    text-transform: uppercase; letter-spacing: 0.07em; color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+  section p { margin: 0.6rem 0; }
+  .foot { margin-top: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--line); padding-top: 1rem; }
 </style>
 </head>
 <body>
 <main>
-  <p class="crumb">human-readable representation of <code>./docs</code> — complete and correct, covering the docs and nothing else; the docs win</p>
+  <p class="crumb">human-readable representation of <code>./docs</code> — exact content, presentation optimized for speed; the docs win</p>
+  <h1>DDD Practice</h1>
+  <p class="src">rendering <code>docs/practice.md</code> — the section labels are navigation; every sentence below them is the doc, verbatim</p>
 
-  <div class="doc">
-    <p class="src">docs/practice.md</p>
-    <h1>DDD Practice</h1>
-    <p>This repo describes a specific way to practice <a href="https://github.com/Reblexis/docs-driven-development/blob/master/docs/idea.md">docs-driven development</a>: how to adopt it in an existing project, and how to use and develop with it when AI agents write the code.</p>
-    <p>Everything else in the repo is the implementation of that description. The idea's rules apply here by reference; where the implementation contradicts this document or the idea, the implementation is wrong.</p>
-    <p>When adopting in a project that already has a <code>./docs</code>, the existing docs are not kept as they were: they are reworked into the standard structure, and content that does not belong in the docs moves elsewhere in the repo — described abstractly in the docs where needed.</p>
-    <p>The repo ships an installable skill for AI agents, at <code>skill/</code>: it describes how to practice this — adopting and operating per this repo — consistently with this document, and installs by copying the folder into an agent's skills directory. Everything else about the skill is its implementation.</p>
-    <p>The docs must be as easy for a human to understand as possible while staying complete: HTML document(s) generated inside the repo render them visually, so the human reads the HTML, not <code>./docs</code>. The HTML covers <code>./docs</code> and nothing else — it is purely the human-readable representation of the docs, complete and correct; it does not describe the implementation or anything beyond the docs. Nothing hallucinated on top, nothing missing. The docs themselves may be whatever format best represents the information: markdown is the base, but HTML, images (e.g. <code>.png</code>), or even video belong in <code>./docs</code> when they represent it better. The human-readable rendering lives outside <code>./docs</code>, properly organized.</p>
-    <p>Every repo using this practice states at the bottom of its README that it uses this practice (linked), describes how its <code>./docs</code> is structured, and says where the human-readable representation lives. Beyond that footer the README does not mention the practice: to a newcomer the repo looks like any repo with docs, and that it is docs-driven shows only on deeper inspection — unless the repo's own docs specify otherwise.</p>
-    <p>When adopting this practice in a repo, its <code>./docs</code> must describe how to develop and contribute there: anyone developing or contributing follows this practice (linked) — docs first, everything else conforms.</p>
-  </div>
+  <nav>
+    <a href="#what">what this is</a>
+    <a href="#impl">docs vs implementation</a>
+    <a href="#existing">pre-existing ./docs</a>
+    <a href="#skill">agent skill</a>
+    <a href="#html">human-readable HTML</a>
+    <a href="#readme">README footer</a>
+    <a href="#contrib">contributing</a>
+  </nav>
+
+  <section id="what">
+    <h2>What this is</h2>
+    <p>This repo describes <mark>a specific way to practice <a href="https://github.com/Reblexis/docs-driven-development/blob/master/docs/idea.md">docs-driven development</a></mark>: how to <mark>adopt it in an existing project</mark>, and how to <mark>use and develop with it when AI agents write the code</mark>.</p>
+  </section>
+
+  <section id="impl">
+    <h2>Docs vs implementation</h2>
+    <p><mark>Everything else in the repo is the implementation</mark> of that description. The idea's rules apply here by reference; <mark>where the implementation contradicts this document or the idea, the implementation is wrong</mark>.</p>
+  </section>
+
+  <section id="existing">
+    <h2>Adopting where ./docs already exists</h2>
+    <p>When adopting in a project that already has a <code>./docs</code>, <mark>the existing docs are not kept as they were</mark>: they are <mark>reworked into the standard structure</mark>, and content that does not belong in the docs <mark>moves elsewhere in the repo</mark> — described abstractly in the docs where needed.</p>
+  </section>
+
+  <section id="skill">
+    <h2>The agent skill</h2>
+    <p>The repo ships an installable skill for AI agents, at <code>skill/</code>: it describes how to practice this — adopting and operating per this repo — consistently with this document, and <mark>installs by copying the folder into an agent's skills directory</mark>. Everything else about the skill is its implementation.</p>
+  </section>
+
+  <section id="html">
+    <h2>The human-readable HTML</h2>
+    <p>The docs must be <mark>as easy for a human to understand as possible while staying complete</mark>: HTML document(s) generated inside the repo render them visually, so <mark>the human reads the HTML, not <code>./docs</code></mark>. The HTML covers <mark><code>./docs</code> and nothing else</mark> — it is purely the human-readable representation of the docs, complete and correct; it does not describe the implementation or anything beyond the docs. <mark>Nothing hallucinated on top, nothing missing</mark>. Its point is to <mark>minimize the time a human needs to understand and navigate</mark> whatever they want from the docs: it may use everything HTML/CSS documents allow — structure, navigation, emphasis, any trick that makes understanding faster — <mark>as long as the content stays exactly the docs'</mark>. The docs themselves may be <mark>whatever format best represents the information</mark>: markdown is the base, but HTML, images (e.g. <code>.png</code>), or even video belong in <code>./docs</code> when they represent it better. The human-readable rendering lives <mark>outside <code>./docs</code></mark>, properly organized.</p>
+  </section>
+
+  <section id="readme">
+    <h2>The README footer</h2>
+    <p>Every repo using this practice states <mark>at the bottom of its README</mark> that it uses this practice (linked), describes <mark>how its <code>./docs</code> is structured</mark>, and says <mark>where the human-readable representation lives</mark>. Beyond that footer <mark>the README does not mention the practice</mark>: to a newcomer the repo looks like any repo with docs, and that it is docs-driven <mark>shows only on deeper inspection</mark> — unless the repo's own docs specify otherwise.</p>
+  </section>
+
+  <section id="contrib">
+    <h2>Contributing</h2>
+    <p>When adopting this practice in a repo, its <code>./docs</code> must describe how to develop and contribute there: <mark>anyone developing or contributing follows this practice</mark> (linked) — <mark>docs first, everything else conforms</mark>.</p>
+  </section>
+
+  <p class="foot">That is the whole of <code>./docs</code>. Highlights and section labels are presentation only; the sentences are the doc, complete and verbatim.</p>
 </main>
 </body>
 </html>
