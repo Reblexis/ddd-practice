@@ -42,7 +42,12 @@ the authoritative elaboration:
   moment the copy exists: regenerate the README and mirror against the
   new repo's own `./docs` at creation, and update any doc that governs
   the new repo's existence elsewhere (a parent's member list, a
-  registry) in the same stroke.
+  registry) in the same stroke. Governing docs are documentation, not
+  prompt text: declarative register for any implementer, records
+  evicted from `./docs` down to sentence granularity, behavior owned
+  elsewhere referenced rather than restated, `./docs` a designed
+  hierarchy; the conformance loop audits the docs themselves against
+  this, not only the code against the docs.
 
 When executing, follow those two documents; where they and any project's
 own docs differ, the project's docs win. Where anything here contradicts
