@@ -47,7 +47,12 @@ the authoritative elaboration:
   evicted from `./docs` down to sentence granularity, behavior owned
   elsewhere referenced rather than restated, `./docs` a designed
   hierarchy; the conformance loop audits the docs themselves against
-  this, not only the code against the docs.
+  this, not only the code against the docs. Docs are meta: nothing in
+  the codebase consumes `./docs` at run time (a runner injecting docs
+  into a model's context is a divergence); a runtime that needs
+  instruction text consumes a derived document specified by the docs,
+  generated from them, living outside `./docs`, regenerated in the
+  same commit as any doc change.
 
 When executing, follow those two documents; where they and any project's
 own docs differ, the project's docs win. Where anything here contradicts
