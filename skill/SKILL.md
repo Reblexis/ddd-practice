@@ -47,7 +47,12 @@ the authoritative elaboration:
   evicted from `./docs` down to sentence granularity, behavior owned
   elsewhere referenced rather than restated, `./docs` a designed
   hierarchy; the conformance loop audits the docs themselves against
-  this, not only the code against the docs. Docs are meta: nothing in
+  this, not only the code against the docs. Tests are derived
+  artifacts, not docs: the behavioral guarantee a test enforces is
+  spec and belongs in `./docs`, but the test script, its steps and
+  expected results, and any harness that runs them live outside
+  `./docs` like code (a runner reading its cases from `./docs` also
+  breaks the meta rule). Docs are meta: nothing in
   the codebase consumes `./docs` at run time (a runner injecting docs
   into a model's context is a divergence); a runtime that needs
   instruction text consumes a derived document specified by the docs,
